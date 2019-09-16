@@ -1,2 +1,3 @@
-# phrame
-Simple PHP framework based on MVC
+# PHRAME (WIP)
+
+A Simple PHP framework based on MVC
