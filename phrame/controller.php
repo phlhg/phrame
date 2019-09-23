@@ -2,8 +2,8 @@
 
     class Controller {
 
-        private $route;
-        private $view;
+        protected $route;
+        protected $view;
 
         function __construct($route){
             $this->route = $route;
@@ -15,6 +15,10 @@
 
         protected function view($name){
             $this->view = new View($name);
+        }
+
+        protected function arg($name){
+            return $this->route->arg($name);
         }
 
         private function reroute(...$args){
