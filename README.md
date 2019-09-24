@@ -1,4 +1,4 @@
-<img style="display: inline; height: 60px; float: right;" src="phrame/default/resources/img/icons/frame.svg">
+<img alt="Logo" src="phrame/default/resources/img/icons/frame.svg" data-canonical-src="phrame/default/resources/img/icons/frame.svg" height="60" align="right" />
 
 # PHRAME (WIP)
 
