@@ -20,6 +20,7 @@
         }
 
         private function find($url){
+            if(count($this->routes) < 1){ return $this->reroute('Phrame/NoRoutes'); }
             foreach($this->routes as $route){
                 if($route->match($url)){ 
                     return $route; 
