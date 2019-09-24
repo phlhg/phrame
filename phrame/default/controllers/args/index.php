@@ -5,9 +5,9 @@
     class Index extends \Controller {
 
         public function Main(){
-            $name = $this->arg("name");
-            echo "Name: ".$name;
-            $this->view("index");
+            $this->view("Args/Index");
+            $this->view->var("name",htmlentities($this->arg("name")));
+            $this->view->var("id",htmlentities($this->arg("id")));
         }
 
     }
