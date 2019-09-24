@@ -8,5 +8,6 @@
     <div class="content">
         <h1>No View</h1>
         <p>No view was set for the matching route</p>
+        <span class="meta">powered by <a href="//phlhg.ch/projects/frame">Phrame</a></span>
     </div>
 </body>

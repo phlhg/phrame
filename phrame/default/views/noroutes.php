@@ -8,5 +8,6 @@
     <div class="content">
         <h1>No Routes</h1>
         <p>PHRAME can't search for a page, because there were no routes defined.</p>
+        <span class="meta">powered by <a href="//phlhg.ch/projects/frame">Phrame</a></span>
     </div>
 </body>

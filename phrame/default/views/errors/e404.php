@@ -8,5 +8,6 @@
     <div class="content">
         <h1>404 Not Found</h1>
         <p>The page you were looking for could no be found.</p>
+        <span class="meta">powered by <a href="//phlhg.ch/projects/frame">Phrame</a></span>
     </div>
 </body>
