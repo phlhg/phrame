@@ -6,7 +6,7 @@
 </head>
 <body>
     <div class="content">
-        <h1>ERROR 404<img src="/phramer/img/icons/frame.svg"/></h1>
-        <p>Page not found</p>
+        <h1>404 Not Found</h1>
+        <p>The page you were looking for could no be found.</p>
     </div>
 </body>
