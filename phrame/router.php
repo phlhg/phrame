@@ -20,12 +20,13 @@
         }
 
         private function find($url){
+            if(count($this->routes) < 1){ return $this->reroute('Phrame/NoRoutes'); }
             foreach($this->routes as $route){
                 if($route->match($url)){ 
                     return $route; 
                 }
             }
-            return $this->reroute('Errors/E404');
+            return $this->reroute('Phrame/Errors/E404');
         }
 
         public function set($pattern,$action){

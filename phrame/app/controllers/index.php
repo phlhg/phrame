@@ -4,8 +4,8 @@
 
     class Index extends \Controller {
 
-        function __construct(){
-            echo "APP";
+        function Main(){
+            $this->view("Index");
         }
 
     }
