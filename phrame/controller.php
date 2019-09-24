@@ -7,10 +7,11 @@
 
         function __construct($route){
             $this->route = $route;
+            $this->view("Phrame/noView");
         }
 
         function Main(){
-            $this->view("Phrame/noView");
+            
         }
 
         protected function view($name){
