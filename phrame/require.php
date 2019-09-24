@@ -2,11 +2,11 @@
 
     spl_autoload_register(function($name){
         $parts = explode("\\",strtolower($name));
-        if(count($parts) > 1 && $parts[0] == "app" && !file_exists(dirname(__FILE__)."/app/routes.php"))
+        if(count($parts) > 1 && $parts[0] == "phrame")
             $parts[0] = "default";
         $path = dirname(__FILE__)."/".join("/",$parts).".php";
         if(!file_exists($path))
-            throw new Exception("Can't load Class ".$name);
+            throw new Exception("Can't load Class ".join("\\",$parts));
         require_once($path);
     });
 

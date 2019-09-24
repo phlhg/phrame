@@ -35,7 +35,13 @@
         }
 
         public function run(){
-            $class = "App\Controllers\\".str_replace("/","\\",$this->action);
+            $parts = explode("/",$this->action);
+            if(strtolower($parts[0]) == "phrame"){
+                array_shift($parts);
+                $class = "Phrame\Controllers\\".join("\\",$parts);
+            } else {
+                $class = "App\Controllers\\".join("\\",$parts);
+            }
             $this->controller = new $class($this);
             $this->controller->Main();
             return $this;

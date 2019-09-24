@@ -1,11 +1,11 @@
 <?php
 
-    namespace App\Controllers\Errors;
+    namespace Phrame\Controllers\Errors;
 
     class E404 extends \Controller {
 
         public function main(){
-            $this->view("Errors/e404");
+            $this->view("Phrame/Errors/e404");
         }
 
     }
