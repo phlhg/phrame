@@ -10,7 +10,7 @@
         }
 
         function Main(){
-            $this->view("Index");
+            $this->view("Phrame/noView");
         }
 
         protected function view($name){
