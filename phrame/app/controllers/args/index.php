@@ -6,6 +6,7 @@
 
         public function Main(){
             $this->view("Args/Index");
+            $this->view->var->set("page_title",htmlentities($this->arg("name")));
             $this->view->var->set("name",htmlentities($this->arg("name")));
             $this->view->var->set("id",htmlentities($this->arg("id")));
         }
