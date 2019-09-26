@@ -6,8 +6,8 @@
 
         public function Main(){
             $this->view("Args/Index");
-            $this->view->var("name",htmlentities($this->arg("name")));
-            $this->view->var("id",htmlentities($this->arg("id")));
+            $this->view->var->set("name",htmlentities($this->arg("name")));
+            $this->view->var->set("id",htmlentities($this->arg("id")));
         }
 
     }
