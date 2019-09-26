@@ -5,13 +5,17 @@
         private $router;
         private $pattern;
         private $action;
+        private $aClass;
+        private $aMethod;
         private $controller;
         private $args = [];
 
         public function __construct($router, $pattern, $action){
             $this->router = $router;
             $this->pattern = $pattern;
-            $this->action = $action;
+            $this->action = explode("::",$action);
+            $this->aClass = $this->action[0];
+            $this->aMethod = (isset($this->action[1]) ? $this->action[1] : "Main");
             $this->extractArgs();
         }
 
@@ -35,15 +39,12 @@
         }
 
         public function run(){
-            $parts = explode("/",$this->action);
-            if(strtolower($parts[0]) == "phrame"){
-                array_shift($parts);
-                $class = "Phrame\Controllers\\".join("\\",$parts);
-            } else {
-                $class = "App\Controllers\\".join("\\",$parts);
-            }
+            $parts = explode("/",$this->aClass);
+            if(strtolower($parts[0]) == "phrame"){ array_shift($parts); $class = "Phrame\Controllers\\".join("\\",$parts);
+            } else {  $class = "App\Controllers\\".join("\\",$parts); }
             $this->controller = new $class($this);
-            $this->controller->Main();
+            $method = $this->aMethod;
+            $this->controller->$method();
             return $this;
         }
 
