@@ -2,4 +2,4 @@
 
 # PHRAME (WIP)
 
-A lightweight PHP framework for creating Websites based on the MVC pattern.
+A lightweight PHP framework for creating websites based on the MVC pattern.
