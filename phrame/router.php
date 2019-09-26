@@ -27,7 +27,7 @@
                     return $route; 
                 }
             }
-            return $this->reroute('Phrame/Errors/E404');
+            return $this->reroute('Phrame/Error::http404');
         }
 
         public function set($pattern,$action){
