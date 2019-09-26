@@ -2,9 +2,9 @@
 
     class Model {
 
-            function __construct(){
-                
-            }
+        function __construct(){
+            
+        }
 
     }
 

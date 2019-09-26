@@ -15,6 +15,7 @@
 
         function __construct(){
             
+            $this->db = DBM::init();
             $this->router = new Router($this);
 
         }
