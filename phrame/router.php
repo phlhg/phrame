@@ -36,9 +36,9 @@
         }
 
         public function reroute($action){
-            $r = new Route($this,"",$action);
-            $r->run();
-            return $r;
+            $this->active = new Route($this,"",$action);
+            $this->active->run();
+            return $this->active;
         }
 
         public function redirect($url){

@@ -73,6 +73,14 @@
         }
 
 
+        public function reroute(...$args){
+            return $this->router->reroute(...$args);
+        }
+
+        public function redirect(...$args){
+            return $this->router->redirect(...$args);
+        }
+
     }
 
 ?>

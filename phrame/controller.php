@@ -22,11 +22,11 @@
             return $this->route->arg($name);
         }
 
-        private function reroute(...$args){
+        protected function reroute(...$args){
             return $this->route->reroute(...$args);
         }
 
-        private function redirect(...$args){
+        protected function redirect(...$args){
             return $this->route->redirect(...$args);
         }
 
