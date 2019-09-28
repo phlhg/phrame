@@ -2,7 +2,14 @@ AddDefaultCharset UTF-8
 
 # Options 
 Options -Indexes
-#Options -MultiViews
+# Options -MultiViews
+
+# HTTP errors
+ErrorDocument 400 /index.php?_req=/errors/400/
+ErrorDocument 401 /index.php?_req=/errors/401/
+ErrorDocument 403 /index.php?_req=/errors/403/
+ErrorDocument 404 /index.php?_req=/errors/404/
+ErrorDocument 500 /index.php?_req=/errors/500/
 
 # Enable URI rewriting
 RewriteEngine on
@@ -29,10 +36,3 @@ RewriteRule ^phramer\/(.*)$ /phrame/default/resources/$1 [QSA,L]
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ index.php [QSA,L]
-
-# Error Handling
-ErrorDocument 400 /err/?e=400
-ErrorDocument 401 /err/?e=401
-ErrorDocument 403 /err/?e=403
-ErrorDocument 404 /err/?e=404
-ErrorDocument 500 /err/?e=500

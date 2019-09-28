@@ -5,7 +5,7 @@
     class Error extends \Controller {
 
         public function main(){
-            $code = $this->arg("code");
+            $code = intval($this->arg("code"));
             switch($code){
                 case 400:
                     $this->http400();
@@ -23,7 +23,7 @@
                     $this->http500();
                     break;
                 default:
-                    $this->http404();
+                    $this->http500();
                     break;
             }
         }
