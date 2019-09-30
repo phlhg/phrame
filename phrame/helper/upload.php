@@ -4,14 +4,18 @@
 
     Class Upload {
 
+        private static $files;
+
         public static function get($name){
-            if(!Self::exists($name))
-                return NULL;
-            return new UploadCollection($_FILES[$name]);
+            if(!Self::exists($name)){ return false; }
+            $list = [];
+            foreach(Self::files()[$name] as $file)
+                $list[] = new UploadFile($file);
+            return $list;
         }
 
         public static function exists($name){
-            return isset($_FILES[$name]);
+            return isset(Self::files()[$name]) && count(Self::files()[$name]) > 0;
         }
 
         public static function exist($names){
@@ -20,43 +24,23 @@
             return true;
         }
 
-    }
-
-    class UploadCollection {
-
-        public $files = [];
-        public $normalized = [];
-
-        public function __construct($files){
-            $this->normalize($files);
-
-            foreach($this->normalized as $file){
-                $this->add($file);
-            }
+        public static function files(){
+            if(!isset(Self::$files)){ Self::normalize(); }
+            return Self::$files;
         }
 
-        public function get($id=0){
-            if(!isset($this->files[$id])){ return false; }
-            return $this->files[$id];
-        }
-
-        public function exists($id){
-            return isset($this->files[$id]) and $this->files[$id]->error != 4;
-        }
-
-        private function add($file){
-            $this->files[] = new UploadFile($file);
-        }
-
-        private function normalize($files){
-            $this->normalized = [];
-            $count = count($files["name"]);
-            for($i = 0; $i < $count; $i++){
-                foreach(array_keys($files) as $property){
-                    $this->normalized[$i][$property] = $files[$property][$i];
+        private static function normalize(){
+            Self::$files = [];
+            foreach(array_keys($_FILES) as $file){
+                $count = count($_FILES[$file]["name"]);
+                for($i = 0; $i < $count; $i++){
+                    if($_FILES[$file]["error"][$i] != 4){
+                        foreach(array_keys($_FILES[$file]) as $property){
+                            Self::$files[$file][$i][$property] = $_FILES[$file][$property][$i];
+                        }
+                    }
                 }
             }
-            return $this->normalized;
         }
 
     }
@@ -70,18 +54,23 @@
         public $error;
 
         public function __construct($file){
-
             $this->name = $file["name"];
             $this->type = $file["type"];
             $this->size = $file["size"];
             $this->tmp_name = $file["tmp_name"];
             $this->error = $file["error"];
-
         }
     
         public function saveTo($path){
             return move_uploaded_file($this->tmp_name, $path);
         }
 
+        public function ext(){
+            return pathinfo($this->name, PATHINFO_EXTENSION);
+        }
+
+        public function content(){
+            return file_get_contents($this->tmp_name);
+        }
 
     }
