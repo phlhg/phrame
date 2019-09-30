@@ -4,6 +4,7 @@
 
         private $app;
         private $routes = [];
+        private $defRoutes = 0;
         private $active = false;
 
         public function __construct($app){
@@ -20,13 +21,13 @@
         }
 
         private function find($url){
-            if(count($this->routes) < 1){ return $this->reroute('Phrame/NoRoutes'); }
+            if(count($this->routes) < $this->defRoutes+1){ return $this->reroute('Phrame/NoRoutes'); }
             foreach($this->routes as $route){
                 if($route->match($url)){ 
                     return $route; 
                 }
             }
-            return $this->reroute('Phrame/Errors/E404');
+            return $this->reroute('Phrame/Error::http404');
         }
 
         public function set($pattern,$action){
@@ -35,9 +36,9 @@
         }
 
         public function reroute($action){
-            $r = new Route($this,"",$action);
-            $r->run();
-            return $r;
+            $this->active = new Route($this,"",$action);
+            $this->active->run();
+            return $this->active;
         }
 
         public function redirect($url){
@@ -49,9 +50,20 @@
         }
 
         private function load(){
+            $this->loadDefRoutes();
+            $this->loadAppRoutes();
+        }
+
+        private function loadDefRoutes(){
+            $_ROUTER = $this;
+                if(file_exists(dirname(__FILE__)."/default/routes.php")){ require_once(dirname(__FILE__)."/default/routes.php"); }
+            unset($_ROUTER);
+            $this->defRoutes = count($this->routes);
+        }
+
+        private function loadAppRoutes(){
             $_ROUTER = $this;
                 if(file_exists(dirname(__FILE__)."/app/routes.php")){ require_once(dirname(__FILE__)."/app/routes.php"); }
-                else { require_once(dirname(__FILE__)."/default/routes.php"); }
             unset($_ROUTER);
         }
 

@@ -11,7 +11,7 @@
     });
 
     $_APP = new App();
-    $_APP->run();
+    $_APP->run((isset($_GET["_req"]) ? $_GET["_req"] : false));
     $_APP->render();
 
 ?>

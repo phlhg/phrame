@@ -2,39 +2,85 @@
 
     class View {
 
+        public $header;
+        public $var;
+
         private $content = "";
         private $name = "";
         private $file = "";
-        private $vars = [];
 
         public function __construct($name){
+            $this->header = new Header();
+            $this->var = new Variables();
             $this->name = $name;
-            $this->init();
-        }
-
-        private function init(){
-            $parts = explode("/",strtolower($this->name));
-            if($parts[0] == "phrame"){ 
-                array_shift($parts);
-                $this->file = dirname(__FILE__)."/default/views/".join("/",$parts).".php";
-            } else {
-                $this->file = dirname(__FILE__)."/app/views/".join("/",$parts).".php";
-            }
         }
 
         private function load(){
             $this->content = "";
             ob_start();
                 $_VIEW = $this;
-                require($this->file);
+                $_VAR = $this->var;
+                $_HEADER = $this->header;
+                require(Self::getFile($this->name));
                 $this->content = ob_get_contents();
             ob_end_clean();
         }
 
-        public function render(){
+        public function add($view){
+            $_VIEW = $this;
+            $_VAR = $this->var;
+            $_HEADER = $this->header;
+            require(Self::getFile($view));
+            return true;
+        }
+
+        public function render($file=True){
+            if($file){ $this->header->apply(); }
             $this->load();
             return $this->content;
         }
+
+        public static function getFile($name){
+            $parts = explode("/",strtolower($name));
+            $file = dirname(__FILE__);
+            if($parts[0] == "phrame"){ array_shift($parts); $file .= "/default/"; } else { $file .= "/app/"; }
+            $file .= "views/".join("/",$parts).".php";
+            return $file;
+        }
+
+        public static function exists($name){
+            return file_exists(Self::getFile($name));
+        }
+
+    }
+
+    class Header {
+
+        private $statuscode = 200;
+        private $headers = [];
+
+        public function status($code){
+            $this->statuscode = $code;
+        }
+
+        public function content($type){
+            $this->set("Content-Type",$type);
+        }
+
+        public function set($property, $value){
+            $this->headers[$property] = $value;
+        }
+
+        public function apply(){
+            http_response_code($this->statuscode);
+            foreach($this->headers as $propery => $value){ header($property.": ".$value); }
+        }
+
+    }
+
+    class Variables {
+
+        public $vars = [];
 
         public function has($name){
             return isset($this->vars[$name]);
@@ -47,12 +93,12 @@
 
         public function set($name, $value){
             $this->vars[$name] = $value;
-            return true;
         }
 
-        public function var($name, $value=NULL){
-            if($value == NULL){ return $this->get($name); }
-            return $this->set($name, $value); 
+        public function setAll($property){
+            foreach($propery as $name => $value){
+                $this->set($name, $value);
+            }
         }
 
     }

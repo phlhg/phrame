@@ -1,4 +1,4 @@
 <?php $_VIEW->add("phrame/section/header"); ?>
-    <h1>No View</h1>
-    <p>No view was set for the matching route</p>
+    <h1><?=$_VAR->get("title")?></h1>
+    <p><?=$_VAR->get("text")?></p>
 <?php $_VIEW->add("phrame/section/footer"); ?>
