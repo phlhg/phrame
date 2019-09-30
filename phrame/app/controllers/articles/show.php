@@ -1,8 +1,8 @@
 <?php
 
-    namespace App\Controllers\Args;
+    namespace App\Controllers\Articles;
 
-    class Index extends \Controller {
+    class Show extends \Controller {
 
         public function Main(){
             $name = $this->arg("name");
@@ -10,9 +10,10 @@
             $article = new \App\Models\Article($id);
             if($article->id < 0){ $this->reroute("phrame/error::http404"); return; }
 
-            $this->view("Args/Index");
+            $this->view("Articles/Show");
             $this->view->var->set("page_title",$article->title);
             $this->view->var->set("title",$article->title);
+            $this->view->var->set("date",$article->date);
             $this->view->var->set("content",$article->content);
         }
 

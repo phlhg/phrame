@@ -4,27 +4,31 @@
 
     class Article extends \Model {
 
-        private static $data = [[
-            "title" => "Hello World",
-            "content" => "Well, hello there."
-        ],[
-            "title" => "WOW",
-            "content" => "Wooooooooooooooooooooooooow"
-        ]];
-
         public $id = -1;
-        public $title = "";
-        public $content = "";
+        public $title;
+        public $date = 0;
+        public $content;
 
         public function __construct($id){
-            $this->load(intval($id));
+            $this->load($id);
         }
 
         private function load($id){
-            if(!isset(Self::$data[$id])){ return; }
+            $id = intval($id);
+            $data = SQL\Articles::get($id);
+            if(!$data){ return; }
             $this->id = $id;
-            $this->title = Self::$data[$id]["title"];
-            $this->content = Self::$data[$id]["content"];
+            $this->title = $data->title;
+            $this->date = $data->date;
+            $this->content = $data->content;
+        }
+
+        public static function getAll(){
+
+            foreach(SQL\Articles::getAll() as $id){
+                yield new Self($id);
+            }
+
         }
     }
 

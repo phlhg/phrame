@@ -2,8 +2,8 @@
 
     class DBM {
 
-        private $databases = [];
-        private $main;
+        private static $databases = [];
+        private static $main;
 
         public static function init(){
             Self::load();
@@ -19,14 +19,14 @@
             return isset(Self::$databases[$identifier]);
         }
 
-        public function get($identifier=NULL){
+        public static function get($identifier=NULL){
             if(!isset($identifier)){ return Self::getMain(); }
             if(!Self::exists($identifier)){ return false; }
-            return Self::$databases[$identifier]->get();   
+            return Self::$databases[$identifier];   
         }
 
-        public function getMain(){
-            if(!isset($main)){ return false; }
+        public static function getMain(){
+            if(!isset(Self::$main)){ return false; }
             return Self::$databases[Self::$main];
         }
 
@@ -50,20 +50,15 @@
             $this->dbname = $dbname;
             $this->username = $credentials[0];
             $this->password = $credentials[1];
+            $this->connect();
         }
 
-        public function get(){
-            if(!isset($this->connection)){ $this->connect(); }
+        public function connection(){
             return $this->connection;
         }
 
         private function connect(){
-            try {
-                $this->connection = new \PDO('mysql:host='.$this->host.';dbname='.$this->dbname,$this->username,$this->password);
-                $this->connection->setAttribute( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION );
-            } catch(\PDOException $e) {
-                return false;
-            }
+            $this->connection = new \PDO('mysql:host='.$this->host.';dbname='.$this->dbname,$this->username,$this->password);
         }
 
     }
