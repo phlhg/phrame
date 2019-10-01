@@ -63,15 +63,32 @@
         private function extractArgs(){
             preg_match_all('/{([\w\d]+)}/i',$this->pattern,$matches);
             foreach($matches[1] as $arg){
-                $this->args[strtolower($arg)] = [ "value" => Null, "regex" => '.+' ];
+                $this->args[strtolower($arg)] = [ "value" => NULL, "regex" => '.+' ];
             }
         }
 
-        public function arg($name){
-            if(!isset($this->args[$name])){ return Null; }
+        public function arg($name,$value=NULL){
+            if(isset($value))
+                return $this->argset($name,$value);
+            return $this->argget($name);
+        }
+
+        public function argget($name){
+            if(!isset($this->args[$name])){ return NULL; }
             return $this->args[$name]["value"];
         }
 
+        public function argset($name,$value){
+            return $this->args[$name]["value"] = $value;
+        }
+
+        public function refresh(){
+            $url = $this->pattern;
+            foreach($this->args as $name => $arg){
+                $url = str_replace("{".$name."}",$arg["value"],$url);
+            }
+            return $this->router->redirect($url);
+        }
 
         public function reroute(...$args){
             return $this->router->reroute(...$args);

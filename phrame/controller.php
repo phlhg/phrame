@@ -18,8 +18,12 @@
             $this->view = new View($name);
         }
 
-        protected function arg($name){
-            return $this->route->arg($name);
+        protected function arg($name,$value=NULL){
+            return $this->route->arg($name,$value);
+        }
+
+        protected function refresh(){
+            return $this->route->refresh();
         }
 
         protected function reroute(...$args){
