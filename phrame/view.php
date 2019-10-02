@@ -35,8 +35,9 @@
         }
 
         public function render($file=True){
-            if($file){ $this->header->apply(); }
             $this->load();
+            if($file)
+                $this->header->apply();
             return $this->content;
         }
 
