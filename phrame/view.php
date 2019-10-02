@@ -56,7 +56,7 @@
 
     class Header {
 
-        private $statuscode = 200;
+        private $statuscode;
         private $headers = [];
 
         public function status($code){
@@ -72,8 +72,10 @@
         }
 
         public function apply(){
-            http_response_code($this->statuscode);
-            foreach($this->headers as $propery => $value){ header($property.": ".$value); }
+            if(isset($this->statuscode))
+                http_response_code($this->statuscode);
+            foreach($this->headers as $property => $value)
+                header($property.": ".$value); 
         }
 
     }
