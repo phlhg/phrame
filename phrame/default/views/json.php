@@ -1,2 +1,2 @@
-<?php $_VIEW->header->content("application/json"); ?>
+<?php $_VIEW->contentType(View::JSON); ?>
 <?=json_encode($_VAR->getAll())?>
