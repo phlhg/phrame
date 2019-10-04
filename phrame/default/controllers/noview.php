@@ -1,6 +1,6 @@
 <?php
 
-    namespace Phrame\Controllers;
+    namespace Default\Controllers;
 
     class NoView extends \Controller {
 

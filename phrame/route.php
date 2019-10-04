@@ -40,7 +40,7 @@
 
         public function run(){
             $parts = explode("/",$this->aClass);
-            if(strtolower($parts[0]) == "phrame"){ array_shift($parts); $class = "Phrame\Controllers\\".join("\\",$parts);
+            if(strtolower($parts[0]) == "phrame"){ array_shift($parts); $class = "Default\Controllers\\".join("\\",$parts);
             } else {  $class = "App\Controllers\\".join("\\",$parts); }
             $this->controller = new $class($this);
             $method = $this->aMethod;
