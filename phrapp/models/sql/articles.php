@@ -2,7 +2,7 @@
 
     namespace App\Models\SQL;
 
-    class Articles extends \SQLModel {
+    class Articles extends \Model\SQL {
 
         public static function get($id){
 

@@ -57,14 +57,14 @@
 
         private function loadDefRoutes(){
             $_ROUTER = $this;
-                if(file_exists(dirname(__FILE__)."/default/routes.php")){ require_once(dirname(__FILE__)."/default/routes.php"); }
+                if(file_exists(PHRAME_PATH."default/routes.php")){ require_once(PHRAME_PATH."default/routes.php"); }
             unset($_ROUTER);
             $this->defRoutes = count($this->routes);
         }
 
         private function loadAppRoutes(){
             $_ROUTER = $this;
-                if(file_exists(dirname(__FILE__)."/app/routes.php")){ require_once(dirname(__FILE__)."/app/routes.php"); }
+                if(file_exists(PHRAPP_PATH."routes.php")){ require_once(PHRAPP_PATH."routes.php"); }
             unset($_ROUTER);
         }
 

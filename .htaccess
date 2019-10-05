@@ -23,9 +23,9 @@ RewriteBase /
 RewriteCond %{REQUEST_URI} !\.([a-zA-Z0-9]{2,5})$
 RewriteRule ^.*[^/]$ /$0/ [L,R]
 
-# Give direct access to "app/resource/"
-RewriteCond %{DOCUMENT_ROOT}phrame/app/resources%{REQUEST_URI} -f
-RewriteRule ^(.*)$ /phrame/app/resources%{REQUEST_URI} [QSA,L]
+# Give direct access to "phrapp/resource/"
+RewriteCond %{DOCUMENT_ROOT}phrapp/resources%{REQUEST_URI} -f
+RewriteRule ^(.*)$ /phrapp/resources%{REQUEST_URI} [QSA,L]
 
 # Give diretc access to "default/resource/"
 #RewriteCond %{DOCUMENT_ROOT}phrame/default/resources%{REQUEST_URI} -f
