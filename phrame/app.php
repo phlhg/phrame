@@ -12,17 +12,15 @@
     class App {
 
         private $router;
-        private $apppath;
-        private $phrpath;
 
-        function __construct($path){
-
-            $this->apppath = $path;
-            $this->phrpath = __DIR__;
+        function __construct(){
 
             spl_autoload_register(function($name){
                 return $this->loadClass($name);
             });
+
+            define("PHRAME_PATH",dirname(__FILE__,1));
+            define("PHRAPP_PATH",dirname(__FILE__,2)."/phrapp/");
 
             DBM::init();
             Conf::init();
@@ -68,28 +66,28 @@
             
             if($type == "app")
                 return $this->pathAppClass($parts);
-            if($type == "default")
-                return $this->pathDefClass($parts);
+            if($type == "phrame")
+                return $this->pathPhrClass($parts);
 
             return $this->pathIntClass($parts);
         }
 
         private function pathAppClass($parts){
-            $parts = array_shift($parts);
-            $path = $this->apppath."/".join("/",$parts).".php";
+            array_shift($parts);
+            $path = PHRAPP_PATH."/".join("/",$parts).".php";
             if(!file_exists($path)){ return false; }
             return $path;
         }
 
-        private function pathDefClass($parts){
-            $parts = array_shift($parts);
-            $path = $this->phrpath."/default/".join("/",$parts).".php";
+        private function pathPhrClass($parts){
+            array_shift($parts);
+            $path = PHRAME_PATH."/default/".join("/",$parts).".php";
             if(!file_exists($path)){ return false; }
             return $path;
         }
 
         private function pathIntClass($parts){
-            $path = $this->phrpath."/".join("/",$parts).".php";
+            $path = PHRAME_PATH."/".join("/",$parts).".php";
             if(!file_exists($path)){ return false; }
             return $path;
         }

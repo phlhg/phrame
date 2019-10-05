@@ -1,6 +1,6 @@
 <?php
 
-    namespace Default\Controllers;
+    namespace Phrame\Controllers;
 
     class Error extends \Controller {
 

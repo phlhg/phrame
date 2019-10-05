@@ -31,8 +31,8 @@
         }
 
         private static function load(){
-            if(!file_exists(dirname(__FILE__)."/app/db.php")){ return; }
-            require_once(dirname(__FILE__)."/app/db.php");
+            if(!file_exists(PHRAPP_PATH."/db.php")){ return; }
+            require_once(PHRAPP_PATH."/db.php");
         }
 
     }

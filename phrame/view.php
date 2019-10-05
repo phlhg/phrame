@@ -13,10 +13,12 @@
         public $file = "";
 
         public function __construct($name){
+
+            $this->name = $name;
+
             $this->header = new Header($this);
             $this->body = new Body($this);
             $this->var = new Variables();
-            $this->name = $name;
         }
 
         public function add($view){
@@ -102,8 +104,8 @@
 
         public static function getFile($name){
             $parts = explode("/",strtolower($name));
-            $file = dirname(__FILE__);
-            if($parts[0] == "phrame"){ array_shift($parts); $file .= "/default/"; } else { $file .= "/app/"; }
+            $file = "";
+            if($parts[0] == "phrame"){ array_shift($parts); $file .= PHRAME_PATH."/default/"; } else { $file .= PHRAPP_PATH; }
             $file .= "views/".join("/",$parts).".php";
             return $file;
         }
