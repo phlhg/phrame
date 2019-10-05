@@ -5,6 +5,6 @@
         database the following way:
     */
 
-    #   DBM::add(id,host,dbname,[username,password]);
+    #   Database\Connection::add(id,host,dbname,[username,password]);
 
 ?>

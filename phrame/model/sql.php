@@ -11,7 +11,7 @@
         }
 
         protected static function query($prepared,$arguments=[]){
-            $q = Self::db(Self::$db)->connection()->prepare($prepared);
+            $q = Self::db(Self::$db)->get()->prepare($prepared);
             $q->execute($arguments);
             return $q;
         }

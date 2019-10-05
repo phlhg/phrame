@@ -22,7 +22,7 @@
             define("PHRAME_PATH",dirname(__FILE__,1));
             define("PHRAPP_PATH",dirname(__FILE__,2)."/phrapp/");
 
-            DBM::init();
+            Database\Manager::init();
             Conf::init();
 
             $this->router = new Router($this);

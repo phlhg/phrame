@@ -1,6 +1,8 @@
 <?php
 
-    class DBM {
+    namespace Database;
+
+    class Manager {
 
         private static $databases = [];
         private static $main;
@@ -11,7 +13,7 @@
 
         public static function add($identifier,$host,$dbname,$credentials){
             if(count(Self::$databases) < 1){ Self::$main = $identifier; }
-            Self::$databases[$identifier] = new DB($host,$dbname,$credentials);
+            Self::$databases[$identifier] = new Connection($host,$dbname,$credentials);
             return Self::$databases[$identifier];
         }
 
@@ -33,32 +35,6 @@
         private static function load(){
             if(!file_exists(PHRAPP_PATH."/db.php")){ return; }
             require_once(PHRAPP_PATH."/db.php");
-        }
-
-    }
-
-    class DB {
-
-        private $host = "";
-        private $username = "";
-        private $password = "";
-        private $dbname = "";
-        private $connection;
-
-        public function __construct($host,$dbname,$credentials){
-            $this->host = $host;
-            $this->dbname = $dbname;
-            $this->username = $credentials[0];
-            $this->password = $credentials[1];
-            $this->connect();
-        }
-
-        public function connection(){
-            return $this->connection;
-        }
-
-        private function connect(){
-            $this->connection = new \PDO('mysql:host='.$this->host.';dbname='.$this->dbname,$this->username,$this->password);
         }
 
     }
