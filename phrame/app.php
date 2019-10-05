@@ -19,7 +19,7 @@
                 return $this->loadClass($name);
             });
 
-            define("PHRAME_PATH",dirname(__FILE__,1));
+            define("PHRAME_PATH",dirname(__FILE__,1)."/");
             define("PHRAPP_PATH",dirname(__FILE__,2)."/phrapp/");
 
             Database\Manager::init();
@@ -81,13 +81,13 @@
 
         private function pathPhrClass($parts){
             array_shift($parts);
-            $path = PHRAME_PATH."/default/".join("/",$parts).".php";
+            $path = PHRAME_PATH."default/".join("/",$parts).".php";
             if(!file_exists($path)){ return false; }
             return $path;
         }
 
         private function pathIntClass($parts){
-            $path = PHRAME_PATH."/".join("/",$parts).".php";
+            $path = PHRAME_PATH.join("/",$parts).".php";
             if(!file_exists($path)){ return false; }
             return $path;
         }

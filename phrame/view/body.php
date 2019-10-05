@@ -37,7 +37,7 @@
         public static function getFile($name){
             $parts = explode("/",strtolower($name));
             $file = "";
-            if($parts[0] == "phrame"){ array_shift($parts); $file .= PHRAME_PATH."/default/"; } else { $file .= PHRAPP_PATH; }
+            if($parts[0] == "phrame"){ array_shift($parts); $file .= PHRAME_PATH."default/"; } else { $file .= PHRAPP_PATH; }
             $file .= "views/".join("/",$parts).".php";
             return $file;
         }

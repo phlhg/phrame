@@ -9,8 +9,8 @@
         }
 
         private static function load(){
-            foreach([PHRAME_PATH."default/",PHRAME_PATH] as $location){
-                $path =$location."/conf.json";
+            foreach([PHRAME_PATH."default/",PHRAPP_PATH] as $location){
+                $path = $location."conf.json";
                 $data = (file_exists($path) ? json_decode(file_get_contents($path),true) : []);
                 Self::$data = array_merge(Self::$data,$data);
             }
