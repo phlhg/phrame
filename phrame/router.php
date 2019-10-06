@@ -21,6 +21,7 @@
         }
 
         private function find($url){
+            if(!is_dir(PHRAPP_PATH)){ return $this->reroute("Phrame/NoApp"); }
             if(count($this->routes) < $this->defRoutes+1){ return $this->reroute('Phrame/NoRoutes'); }
             foreach($this->routes as $route){
                 if($route->match($url)){ 
