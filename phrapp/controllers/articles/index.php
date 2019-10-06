@@ -6,8 +6,8 @@
 
         public function Main(){
             $this->view("Articles/Index");
-            $this->view->var->set("page_title","Articles");
-            $this->view->var->set("articles",\App\Models\Article::getAll());
+            $this->var->set("page_title","Articles");
+            $this->var->set("articles",\App\Models\Article::getAll());
         }
 
     }

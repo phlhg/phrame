@@ -4,6 +4,7 @@
 
         protected $route;
         protected $view;
+        protected $var;
 
         function __construct($route){
             $this->route = $route;
@@ -16,6 +17,7 @@
 
         protected function view($name){
             $this->view = new View($name);
+            $this->var = $this->view->var;
         }
 
         protected function arg($name,$value=NULL){

@@ -6,7 +6,7 @@
 
         function Main(){
             $this->view("Index");
-            $this->view->var->set("page_title","Welcome");
+            $this->var->set("page_title","Welcome");
         }
 
     }

@@ -6,9 +6,9 @@
 
         function Main(){
             $this->view("Phrame/Output/XML");
-            $this->view->var->set("test","lol");
-            $this->view->var->set("hello","world");
-            $this->view->var->set("settings",[
+            $this->var->set("test","lol");
+            $this->var->set("hello","world");
+            $this->var->set("settings",[
                 [
                     "name" => "show_alert",
                     "value" => true
