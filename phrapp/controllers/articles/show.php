@@ -14,10 +14,10 @@
                 return $this->refresh();
             }
             $this->view("Articles/Show");
-            $this->view->var->set("page_title",$article->title);
-            $this->view->var->set("title",$article->title);
-            $this->view->var->set("date",$article->date);
-            $this->view->var->set("content",$article->content);
+            $this->var->set("page_title",$article->title);
+            $this->var->set("title",$article->title);
+            $this->var->set("date",$article->date);
+            $this->var->set("content",$article->content);
         }
 
     }

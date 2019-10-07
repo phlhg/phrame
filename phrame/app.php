@@ -29,10 +29,12 @@
 
         }
 
-        public function run($url=false){
+        public function run($method=false, $url=false){
 
+            $method = ( !$method ? $_SERVER['REQUEST_METHOD'] : $method);
             $url = ( !$url ? parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH) : $url);
-            $this->router->run($url);
+
+            $this->router->run($method,$url);
 
         }
 

@@ -4,6 +4,7 @@
 
         public const HTML = "text/html";
         public const JSON = "application/json";
+        public const XML = "application/xml";
 
         public $header;
         public $var;
