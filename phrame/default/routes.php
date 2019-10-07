@@ -1,5 +1,5 @@
 <?php
 
-    $_ROUTER->set("/errors/{code}/","Phrame/Error")->where(["code" => '\d{3}']);
+    $_ROUTER->GET("/errors/{code}/","Phrame/Error")->where(["code" => '\d{3}']);
     
 ?>

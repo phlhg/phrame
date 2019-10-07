@@ -1,9 +1,9 @@
 <?php
 
-    $_ROUTER->set("/","Index");
-    $_ROUTER->set("/article/{id}/{name}/","Articles/Show")->where(["id" => '\d+', "name" => "[\w-]+"]);
-    $_ROUTER->set("/article/","Articles/Index");
+    $_ROUTER->GET("/","Index");
+    $_ROUTER->GET("/article/{id}/{name}/","Articles/Show")->where(["id" => '\d+', "name" => "[\w-]+"]);
+    $_ROUTER->GET("/article/","Articles/Index");
 
-    $_ROUTER->set("/ajax/{type}/","Ajax")->where(["type" => "\w+"]);
+    $_ROUTER->GET("/ajax/{type}/","Ajax")->where(["type" => "\w+"]);
 
 ?>

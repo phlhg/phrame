@@ -12,32 +12,48 @@
             $this->load();
         }
 
-        public function run($url){
-            $this->active = $this->find($url);
+        public function run($method, $url){
+            $this->active = $this->find($method, $url);
             if(!$this->active){ 
                 return false; 
             }
             return $this->active->run();
         }
 
-        private function find($url){
+        private function find($method, $url){
             if(!is_dir(PHRAPP_PATH)){ return $this->reroute("Phrame/NoApp"); }
             if(count($this->routes) < $this->defRoutes+1){ return $this->reroute('Phrame/NoRoutes'); }
             foreach($this->routes as $route){
-                if($route->match($url)){ 
+                if($route->match($method, $url)){ 
                     return $route; 
                 }
             }
             return $this->reroute('Phrame/Error::http404');
         }
 
-        public function set($pattern,$action){
-            $this->routes[] = new Route($this, $pattern, $action);
+        public function GET($pattern,$action){
+            return $this->set("GET",$pattern,$action);
+        }
+
+        public function POST($pattern,$action){
+            return $this->set("POST",$pattern,$action);
+        }
+
+        public function PUT($pattern,$action){
+            return $this->set("PUT",$pattern,$action);
+        }
+
+        public function DELETE($pattern,$action){
+            return $this->set("DELETE",$pattern,$action);
+        }
+
+        public function set($method,$pattern,$action){
+            $this->routes[] = new Route($this, $method, $pattern, $action);
             return end($this->routes);
         }
 
         public function reroute($action){
-            $this->active = new Route($this,"",$action);
+            $this->active = new Route($this,"GET","",$action);
             $this->active->run();
             return $this->active;
         }

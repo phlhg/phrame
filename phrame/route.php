@@ -3,6 +3,7 @@
     class Route {
 
         private $router;
+        private $method;
         private $pattern;
         private $action;
         private $aClass;
@@ -10,8 +11,9 @@
         private $controller;
         private $args = [];
 
-        public function __construct($router, $pattern, $action){
+        public function __construct($router, $method, $pattern, $action){
             $this->router = $router;
+            $this->method = $method;
             $this->pattern = $pattern;
             $this->action = explode("::",$action);
             $this->aClass = $this->action[0];
@@ -19,13 +21,12 @@
             $this->extractArgs();
         }
 
-        public function match($url){
+        public function match($method, $url){
+            if($method != $this->method){ return false; }
             if(!preg_match($this->regex(),$url,$matches)){ return false; }
-            foreach($this->args as $name => $arg){
-                if(isset($matches[$name])){
-                    $this->args[$name]["value"] = $matches[$name];
-                }
-            }
+            foreach($this->args as $name => $arg){ if(isset($matches[$name])){
+                $this->args[$name]["value"] = $matches[$name];
+            } }
             return true;
         }
 
