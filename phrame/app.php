@@ -66,10 +66,15 @@
             $parts = explode("\\",strtolower($name));
             $type = $parts[0];
             
-            if($type == "app")
+            if($type == "app"){
                 return $this->pathAppClass($parts);
-            if($type == "phrame")
-                return $this->pathPhrClass($parts);
+            }
+            if($type == "phrame"){
+                if($this->pathAppClass($parts) == false){
+                    return $this->pathPhrClass($parts);
+                }
+                return $this->pathAppClass($parts);
+            }
 
             return $this->pathIntClass($parts);
         }
