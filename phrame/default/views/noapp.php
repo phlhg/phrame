@@ -1,7 +1,7 @@
 <?php $_VIEW->add("phrame/section/header"); ?>
-    <h1>No application found</h1>
+    <h1>No App</h1>
     <p>
-        The application wasn't found in <?=str_replace("\\","/",PHRAPP_PATH)?><br/>
-        Check the path or provide an application.
+        No App was found in <u>/phrapp/</u>.<br/> 
+        To run PHRAME provide your own app or get the example on <a href="http://github.com/phlhg/phrapp"><u>Github</u></a>.
     </p>
 <?php $_VIEW->add("phrame/section/footer"); ?>
