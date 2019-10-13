@@ -23,6 +23,24 @@
             $this->vars[$name] = $value;
         }
 
+        public function title($value){
+            $this->set("html_title",$value);
+        }
+
+        public function style($href){
+            $this->set("html_styles",array_merge(
+                $this->get("html_styles",[]),
+                [ $href ]
+            ));
+        }
+
+        public function scripts($src){
+            $this->set("html_scripts",array_merge(
+                $this->get("html_scripts",[]),
+                [ $src ]
+            ));
+        }
+
         public function setAll($property){
             foreach($propery as $name => $value){
                 $this->set($name, $value);

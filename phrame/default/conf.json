@@ -1,7 +1,9 @@
 {
-    "page": {
-        "title": {
-            "appendix": " | PHRAME"
+    "view":{
+		"html": {
+			"title": {
+				"appendix": " | PHRAME"
+            }
         }
     }
 }
