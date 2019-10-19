@@ -34,7 +34,7 @@
             ));
         }
 
-        public function scripts($src){
+        public function script($src){
             $this->set("html_scripts",array_merge(
                 $this->get("html_scripts",[]),
                 [ $src ]
