@@ -1,8 +1,7 @@
 AddDefaultCharset UTF-8
 
 # Options 
-Options -Indexes
-# Options -MultiViews
+Options -Indexes +FollowSymLinks -MultiViews
 
 # HTTP errors
 ErrorDocument 400 /index.php?_req=/errors/400/
