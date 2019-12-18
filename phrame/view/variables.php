@@ -41,8 +41,8 @@
             ));
         }
 
-        public function setAll($property){
-            foreach($propery as $name => $value){
+        public function setAll($properties){
+            foreach($properties as $name => $value){
                 $this->set($name, $value);
             }
         }
