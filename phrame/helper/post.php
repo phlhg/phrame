@@ -6,7 +6,7 @@
 
         public static function get($name){
             if(!Self::exists($name))
-                return NULL;
+                return false;
             return $_POST[$name];
         }
 
