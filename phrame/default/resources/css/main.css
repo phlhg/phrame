@@ -8,9 +8,9 @@ a {
 ::selection, ::-moz-selection { background-color: #0032c8; color: #fff; }
 html { font-family:  'Raleway', sans-serif; background-color: #111; color: #fff; }
 .content { position: relative; display: block; width: 100%; max-width: 1000px; padding: 100px 50px; margin: 0 auto; }
-h1 { position: relative; display: block; font-size: 50px; font-weight: bold; padding: 0 0 10px 0;  }
+h1 { position: relative; display: block; font-size: 50px; line-height: 60px; font-weight: bold; padding: 0 60px 10px 0;  }
 h1:after { content: ''; position: absolute; display: block; bottom: 0; left: 0; width: 100px; height: 4px; background-color: #0032c8;}
-h1 img { display: block; height: 2em; float: right; margin: -20px 0 0 0;  }
+h1 img { position: absolute; display: block; top: 0; right: 0; height: calc(100% - 10px); filter: invert(1); }
 p { line-height: 25px; }
 span.meta { position: relative; display: block; font-size: 14px; color: #999; margin-top: 25px;  }
 a { color: inherit; text-decoration: none; position: relative; display: inline-block;}
