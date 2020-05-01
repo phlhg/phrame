@@ -28,7 +28,7 @@ RewriteCond %{REQUEST_URI} !\.([a-zA-Z0-9]{2,5})$
 RewriteRule ^.*[^/]$ /$0/ [L,R]
 
 # Give direct access to "phrapp/resource/"
-RewriteCond %{DOCUMENT_ROOT}/phrapp/resources%{REQUEST_URI} -f [NC]
+RewriteCond %{DOCUMENT_ROOT}/phrapp/resources%{REQUEST_URI} -f
 RewriteRule ^(.*)$ /phrapp/resources%{REQUEST_URI} [L,QSA,NC]
 
 # Give diretc access to "default/resource/"
@@ -36,6 +36,6 @@ RewriteCond %{REQUEST_URI} ^/phramer/.*$ [NC]
 RewriteRule ^phramer\/(.*)$ /phrame/default/resources/$1 [L,QSA]
 
 # Give direct access to existing files
-RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-d [NC]
-RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-f [NC]
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-d
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-f
 RewriteRule ^(.*)$ index.php [QSA,L]
