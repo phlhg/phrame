@@ -32,11 +32,19 @@
         private static function normalize(){
             Self::$files = [];
             foreach(array_keys($_FILES) as $file){
-                $count = count($_FILES[$file]["name"]);
-                for($i = 0; $i < $count; $i++){
-                    if($_FILES[$file]["error"][$i] != 4){
+                if(is_array($_FILES[$file]["name"])){
+                    $count = count($_FILES[$file]["name"]);
+                    for($i = 0; $i < $count; $i++){
+                        if($_FILES[$file]["error"][$i] != 4){
+                            foreach(array_keys($_FILES[$file]) as $property){
+                                Self::$files[$file][$i][$property] = $_FILES[$file][$property][$i];
+                            }
+                        }
+                    }
+                } else {
+                    if($_FILES[$file]["error"] != 4){
                         foreach(array_keys($_FILES[$file]) as $property){
-                            Self::$files[$file][$i][$property] = $_FILES[$file][$property][$i];
+                            Self::$files[$file][0][$property] = $_FILES[$file][$property];
                         }
                     }
                 }
