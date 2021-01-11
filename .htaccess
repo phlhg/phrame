@@ -15,7 +15,6 @@ RewriteEngine on
 RewriteBase /
 
 # Remove www.
-RewriteEngine on
 RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
 RewriteRule ^(.*)$ http://%1%{REQUEST_URI} [L,QSA,R=301,NC]
 
